@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-      <TodoHeader></TodoHeader>
-      <TodoInput></TodoInput>
-      <TodoList></TodoList>
-      <TodoFooter></TodoFooter>
+      <todo-header></todo-header>
+      <todo-input></todo-input>
+      <todo-list></todo-list>
+      <todo-footer></todo-footer>
   </div>
 </template>
 
@@ -17,10 +17,10 @@ import TodoFooter from './components/TodoFooter.vue';
 export default {
   components:{
     // 컴포넌트 태그명 : 컴포넌트 내용
-    'TodoHeader' : TodoHeader,
-    'TodoInput' : TodoInput,
-    'TodoList' : TodoList,
-    'TodoFooter' : TodoFooter,
+    'todo-header' : TodoHeader,
+    'todo-input' : TodoInput,
+    'todo-list' : TodoList,
+    'todo-footer' : TodoFooter,
   }
 }
 </script>
