@@ -8,5 +8,5 @@
   
   +) custom component는 자바스크립트에서 변수로 사용되지 않으므로 camelCase를 쓸 이유가 없다는 의견도 있다.
 
-  https://vuejs.org/v2/style-guide/#Self-closing-components-strongly-recommended 
+  https://vuejs.org/v2/style-guide/#Self-closing-components-strongly-recommended . 
   https://www.w3.org/TR/2018/WD-custom-elements-20180216/#html-element-constructors
