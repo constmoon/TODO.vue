@@ -1,12 +1,19 @@
-### Vue style guide
+#### 현재 app 구조
 
-* 소문자 기준의 kebab-case(하이픈 구분)로 custom element 작성
-  ```
-  <list-item></list-item>
-  ```
-  카멜케이스로 작성해도 작동하는 데에는 이상이 없지만, Vue 내부적으로 camelCase를 kebab-case로 변경해준다. HTML Attributes(속성)이 기본적으로 kebab-case를 따르기 때문에 kebab-case로 작성시 에디터에서 바로 컴포넌트로 연결도 가능하다(에디터 제공). 이렇게 작업 시간도 줄여주므로 권장하는 것은 따르도록 하자.
-  
-  +) custom component는 자바스크립트에서 변수로 사용되지 않으므로 camelCase를 쓸 이유가 없다는 의견도 있다.
+`TodoInput`에서 `newTodoItem`의 데이터를 받아서 추가 -> 로컬스토리지에 새로 생김 -> `TodoList`에 바로 반영이 안된다(새로고침해야만 반영). 분리된 구조.
 
-  https://vuejs.org/v2/style-guide/#Self-closing-components-strongly-recommended   
-  https://www.w3.org/TR/2018/WD-custom-elements-20180216/#html-element-constructors
+![before](./img/todo-before.png )
+
+
+#### 개선한 app구조
+`TodoInput`, `TodoList` 등 하위 컴포넌트는 표현만 할 것. 실질적인 기능 동작은 상위 컴포넌트인 `App`에서 이루어지도록 한다. `App` 컴포넌트에서는 props로 속성만 내릴 것.
+하위 컴포넌트에서 신호를 받았을 때 제어하는 구조.
+
+![after](./img/todo-after.png )
+
+`App`의 경우에는 Container라는 개념으로 보면 된다.
+컴포넌트 설계 관점으로 보면 컴포넌트에도 
+단순히 화면에 표현하기만하는 컴포넌트가 있는가하면(presentor),
+앱의 동작 등의 데이터 조작을 하는 걸 container라고 함
+
+이렇게 하면 한 곳에서 관리를 할 수 있게되어 각 이벤트별로 분리/해당 내용을 props로 내려주기만 하면 전체적인 컴포넌트 동작을 매끄럽게 이을 수 있다.

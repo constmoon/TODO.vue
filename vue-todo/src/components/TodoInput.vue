@@ -1,12 +1,7 @@
 <template>
   <div class="inputBox shadow">
     <!-- v-model="특정 데이터 속성": input에 입력된 텍스트값을 동적으로 vue instance에 맵핑 -->
-    <input
-      type="text"
-      v-model="newTodoItem"
-      v-on:keyup.enter="addTodo"
-      placeholder="Type what you have to do"
-    >
+    <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo" placeholder="할 일을 입력하세요">
     <span class="addContainer" v-on:click="addTodo">
       <i class="fas fa-plus addBtn"></i>
     </span>
@@ -18,29 +13,23 @@ export default {
   data: function() {
     return {
       newTodoItem: ""
-    };
+    }
   },
   methods: {
-    addTodo: function() {
+    addTodo() {
       // input값이 있어야 실행
       if (this.newTodoItem !== "") {
-        // key / value 구분해서 로컬 스토리지에 저장
-        var obj = {
-          completed: false,
-          item: this.newTodoItem,
-        };
-        // stringify(): 객체가 string으로 변환되어 저장(로컬 스토리지의 특성상 object-JSON 사용)
-        // stringify()하지 않으면 js object 형태인 [object Object]로 들어가게 되어 값을 확인할 수 없다
-        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        // input: 이벤트 발생
+        this.$emit('addTodo', this.newTodoItem);
         this.clearInput();
       }
     },
     // 저장 후 input box 초기화
-    clearInput: function() {
+    clearInput() {
       this.newTodoItem = "";
     }
   }
-};
+}
 </script>
 
 <style scoped>

@@ -2,7 +2,7 @@
   <div>
     <ul>
       <!-- v-bind:key => todoItem의 텍스트가 key가 되어 중복 X, v-for의 성능 가속화 -->
-      <li v-for="(todoItem,index) in todoItems" v-bind:key="todoItem.item" class="shadow">
+      <li v-for="(todoItem,index) in propsdata" v-bind:key="todoItem.item" class="shadow">
         <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed}" 
         v-on:click="toggleCompltete(todoItem, index)"></i>
         <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
@@ -16,12 +16,7 @@
 
 <script>
 export default {
-  // 로컬 스토리지에서 꺼내서 담을 데이터
-  data: function() {
-    return {
-      todoItems: []
-    };
-  },
+  props: ['propsdata'],
   methods: {
     removeTodo: function(todoItem, index) {
       localStorage.removeItem(todoItem);
@@ -36,21 +31,6 @@ export default {
         localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     }
   },
-  // 인스턴스가 생성되자마자 호출됨
-  created: function() {
-    if (localStorage.length > 0) {
-      for (var i = 0; i < localStorage.length; i++) {
-
-        // webpack dev server를 제외한 나머지들 저장
-        if (localStorage.key(i) !== "loglevel:webpack-dev-server") {
-            // JSON.parse()로 value 리턴, todoItems에 추가
-           this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-            
-        }
-        
-      }
-    }
-  }
 };
 </script>
 
