@@ -20,7 +20,7 @@ export default {
       // input값이 있어야 실행
       if (this.newTodoItem !== "") {
         // input: 이벤트 발생
-        this.$emit('addTodo', this.newTodoItem);
+        this.$emit('addTodoItem', this.newTodoItem);
         this.clearInput();
       }
     },

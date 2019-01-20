@@ -19,16 +19,12 @@ export default {
   props: ['propsdata'],
   methods: {
     removeTodo: function(todoItem, index) {
-      localStorage.removeItem(todoItem);
-      // splice(): 특정 인덱스에서 하나를 지우는 js API. 기존 배열을 변경하여 새로운 배열 반환
-      // cf) slice(): 삭제하되 기존 배열은 변경하지 않음
-      this.todoItems.splice(index, 1);
+      // 2개의 파라미터를 App.vue의 removeItem으로 보냄
+      // $emit(eventName)을 사용하여 이벤트를 발생 
+      this.$emit('removeItem', todoItem, index);
     },
     toggleCompltete: function(todoItem, index){
-        todoItem.completed = !todoItem.completed;
-        // 로컬 스토리지의 데이터를 갱신
-        localStorage.removeItem(todoItem.item);
-        localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+      this.$emit('toggleItem', todoItem, index);
     }
   },
 };
