@@ -24,6 +24,7 @@
 ## slot 
 특정 컴포넌트의 일부 UI들만 재사용할 수 있는 기능. '재정의'하는 관점에서 slot을 사용한다. 
 Modal 중에서 케이스가 나뉘는 경우, slot으로 같은 컴포넌트를 재사용하는 것.
+Slot의 내용을 갖고있는 컴포넌트를 등록한 컴포넌트에서 재정의할 수 있다.
 
 Modal.vue
 
@@ -32,3 +33,11 @@ Modal.vue
 TodoInput.vue
 
     <h3 slot="header">custom header</h3>
+
+
+## Transitions
+
+사용 관점: 트랜지션이나 애니메이션이 부수적인 효과로만 취급되는 게 아니라, 프레임워크 자체에서 지원되기 때문에 간단한 이펙트들을 바로바로 추가할 수 있다. 
+
+트랜지션을 사용할 때는 [클래스 이름](https://vuejs.org/v2/guide/transitions.html#Transition-Classes)에 따라 트랜지션들이 조합이 된다. 
+
