@@ -51,61 +51,61 @@ TodoInput.vue
   	- ```const``` : 한번 선언한 값에 대해 **변경할 수 없음**
   	- ```let``` : 한번 선언한 값에 대해 **다시 선언할 수 없음**
   
+```
+// ES5
+var a = 10;
 
-    
-    // ES5
-    var a = 10;
-    
-    // ES6
-    let b = 20;
-    const c = 30;
-    
-    // let과 const의 차이점
-    // const는 한 번 선언하면 값을 바꿀 수 없다
-    let a = 10;
-    a = 20;   // a=20
-    const b = 10;
-    b = 20;   // ERROR
-    
-    let c = 10;
-    let c = 20;   // ERROR! 한 번 선어난 변수는 재선언 불가. 값을 바꾸는 것만 가능
-    
-    // const 배열은 push가 가능
-    const arr = [];
-    arr.push(10);   // arr: 10
-    
-    
-    // var
-    var a = 10;
-    if(true){
-		var a=20;
-		console.log(a);   // 20
-    }
-    
-    // let
-    let a = 10;
-    if(true){
-    	let a = 20;      // 사용 가능. 재선언이 아니라 블록 안에 들어가서 범위가 달라진 것
-        console.log(a);  // 20
-    }
-    
+// ES6
+let b = 20;
+const c = 30;
+
+// let과 const의 차이점
+// const는 한 번 선언하면 값을 바꿀 수 없다
+let a = 10;
+a = 20;   // a=20
+const b = 10;
+b = 20;   // ERROR
+
+let c = 10;
+let c = 20;   // ERROR! 한 번 선어난 변수는 재선언 불가. 값을 바꾸는 것만 가능
+
+// const 배열은 push가 가능
+const arr = [];
+arr.push(10);   // arr: 10
+
+
+// var
+var a = 10;
+if(true){
+	var a=20;
+	console.log(a);   // 20
+}
+
+// let
+let a = 10;
+if(true){
+let a = 20;      // 사용 가능. 재선언이 아니라 블록 안에 들어가서 범위가 달라진 것
+console.log(a);  // 20
+}
+```
   
 ---
  2. ES5 특징
  * 변수의 Scope
 	* 기존의 ES5는 {}에 상관없이 스코프가 결정됨
     
-    
-    // {}를 기점으로 블록이 구분된다
-    for(var i=0; i<5; i++){
-        console.log('반복문 안', i);  // 0,1,2,3,4
-    }
-    console.log('반복문 밖', i);   // 5
-    
-    for(let k=0; k<4; k++){
-        console.log('반복문 안', k);
-    }
-    console.log('반복문 밖',k);    // ERROR
+```
+// {}를 기점으로 블록이 구분된다
+for(var i=0; i<5; i++){
+console.log('반복문 안', i);  // 0,1,2,3,4
+}
+console.log('반복문 밖', i);   // 5
+
+for(let k=0; k<4; k++){
+console.log('반복문 안', k);
+}
+console.log('반복문 밖',k);    // ERROR
+```
 
 
 * Hoisting
@@ -114,45 +114,48 @@ TodoInput.vue
 	* 따라서 ```function a()```과 ```var```는 코드의 최상단으로 끌어올려진 것처럼(hoistied) 보인다.
 
 
-    var sum = 5;
-    sum = sum + i;    // 에러가 나지 않는다
-    
-    function sumAll(){
-        ...
-    }
-    
-    var i = 10;
-    
-    
-    // 실제 할당 순서
-    // #1. 함수 선언식과 변수 선언을 hoisting
-    var sum = 5;
-    function sumAll(){
-        ...
-    }
-    var i;
-    
-    // #2 변수 대입 및 할당, 연산
-    sum = 5;
-    sum = sum + i;
-    i = 10;
+```
+var sum = 5;
+sum = sum + i;    // 에러가 나지 않는다
 
+function sumAll(){
+...
+}
+
+var i = 10;
+
+
+// 실제 할당 순서
+// #1. 함수 선언식과 변수 선언을 hoisting
+var sum = 5;
+function sumAll(){
+...
+}
+var i;
+
+// #2 변수 대입 및 할당, 연산
+sum = 5;
+sum = sum + i;
+i = 10;
+```
 
 ----
 3. 함수 선언문 변화
 
     
-    // 함수 선언문
-    function sum(){
-    }
-    
-    // 표현식
-    var sum = function(a,b){
-        return a+b;
-    }
-    
-    // ES6에서의 함수 선언문 변화
-    // function()에서 화살표로
-    var sum = (a,b) => {
-        return a+b;
-    }
+```
+// 함수 선언문
+function sum(){
+}
+
+// 표현식
+var sum = function(a,b){
+return a+b;
+}
+
+// ES6에서의 함수 선언문 변화
+// function()에서 화살표로
+var sum = (a,b) => {
+return a+b;
+}
+```
