@@ -18,12 +18,12 @@
 export default {
   props: ['propsdata'],
   methods: {
-    removeTodo: function(todoItem, index) {
+    removeTodo(todoItem, index) {
       // 2개의 파라미터를 App.vue의 removeItem으로 보냄
       // $emit(eventName)을 사용하여 이벤트를 발생 
       this.$emit('removeItem', todoItem, index);
     },
-    toggleCompltete: function(todoItem, index){
+    toggleCompltete(todoItem, index){
       this.$emit('toggleItem', todoItem, index);
     }
   },

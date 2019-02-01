@@ -20,7 +20,7 @@
 import Modal from "./common/Modal.vue";
 
 export default {
-  data: function() {
+  data() {
     return {
       newTodoItem: "",
       showModal: false
@@ -45,7 +45,8 @@ export default {
   },
   // input의 상위 컴포넌트가 App.vue, 하위 컴포넌트가 Modal
   components: {
-    Modal: Modal
+    // Modal: Modal 과 같음
+    Modal
   }
 };
 </script>

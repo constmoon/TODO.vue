@@ -23,7 +23,7 @@ export default {
   },
   //////// Refactoring: App.vue 한 개의 컴포넌트에서 모든 데이터 조작이 이루어지도록 변경 ////////
   methods:{
-    addOneItem: function(todoItem){
+    addOneItem(todoItem){
       // key / value 구분해서 로컬 스토리지에 저장
       const obj = {
         completed: false,
@@ -34,14 +34,14 @@ export default {
       localStorage.setItem(todoItem, JSON.stringify(obj));
       this.todoItems.push(obj);
     },
-    removeOneItem: function(todoItem, index){
+    removeOneItem(todoItem, index){
       localStorage.removeItem(todoItem);
       // splice(): 특정 인덱스에서 하나를 지우는 js API. 기존 배열을 변경하여 새로운 배열 반환
       // cf) slice(): 삭제하되 기존 배열은 변경하지 않음
       this.todoItems.splice(index, 1);
       console.log('removed');
     },
-    toggleOneItem: function(todoItem, index){
+    toggleOneItem(todoItem, index){
       // todoItem 개별적으로 접근하지 않고 todoItems의 요소로 접근(컴포넌트 간의 경계를 좀 더 명확하게 함)
       this.todoItems[index].completed = !this.todoItems[index].completed;
 
@@ -49,13 +49,13 @@ export default {
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     },
-    clearAllItems: function(){
+    clearAllItems(){
       localStorage.clear();
       this.todoItems = [];
     }
 
   },
-  created: function() { 
+  created() { 
     if (localStorage.length > 0) {
       for (let i = 0; i < localStorage.length; i++) {
 

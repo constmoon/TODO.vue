@@ -200,3 +200,35 @@ arr.forEach(function(value){
 var arr = ["a","b","c"];
 arr.forEach(value => console.log(value));   // a, b, c
 ```
+
+----
+5. Enhanced Object Literals(향상된 객체 리터럴)
+* 객체의 속성을 메서드로 사용할 때 function 예약어를 생략하고 생성 가능. 괄호 하나만으로 속성 메서드 함수의 역할을 한다
+```
+var dictionary = {
+	words: 100,
+	// ES5
+	lookup: function(){
+		console.log("find words");
+	},
+	// ES6
+	lookup(){
+		console.log("find words");
+	}
+};
+```
+
+
+
+## Vuex
+복잡한 어플리케이션의 컴포넌트들을 효율적으로 관리해주는 라이브러리
+* Vuex 라이브러리의 주요 속성ㅞ
+	1. state: 데이터(property)
+	2. getters: computed
+	3. mutations: 메서드
+	4. actions: 비동기 메서드
+
+* Vuex로 해결할 수 있는 문제
+	- MVC 패턴에서 발생하는 구조적 오류(양방향 데이터 전송을 단방향으로 변경)
+	- 컴포넌트 간 데이터 전달 명시
+	- 여러 개의 컴포넌트에서 같은 데이터를 업데이트 할 때 동기화 문제
