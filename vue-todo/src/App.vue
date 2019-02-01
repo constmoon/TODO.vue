@@ -25,7 +25,7 @@ export default {
   methods:{
     addOneItem: function(todoItem){
       // key / value 구분해서 로컬 스토리지에 저장
-      var obj = {
+      const obj = {
         completed: false,
         item: todoItem,
       };
@@ -57,7 +57,7 @@ export default {
   },
   created: function() { 
     if (localStorage.length > 0) {
-      for (var i = 0; i < localStorage.length; i++) {
+      for (let i = 0; i < localStorage.length; i++) {
 
         // webpack dev server를 제외한 나머지들 저장
         if (localStorage.key(i) !== "loglevel:webpack-dev-server") {

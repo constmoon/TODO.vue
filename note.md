@@ -159,3 +159,44 @@ var sum = (a,b) => {
 return a+b;
 }
 ```
+
+```
+function f(){
+	{
+		let x;
+		{
+			// 새로운 블록 안에 새로운 x의 스코프가 생김
+			const x = "sneaky";
+			x = "foo";    // 위에 이미 const로 x를 선언했으므로 다시 값을 대입하면 에러 발생
+		}
+		// 이전 블록 범위로 돌아왔기 때무에 'let x'에 해당하는 메모리에 값을 대입
+		x = bar;
+		let x = "inner";   // Uncaught SyntaxError: Identifier 'x' has already been declared
+	}
+}
+```
+
+----
+4. 화살표 함수
+```
+// ES5 함수 정의 방식
+var sum = function(a,b){
+	return a+b;
+};
+
+// ES6 함수 정의 방식
+var sum = (a, b) => {
+	return a+b;
+};
+```
+```
+// ES5
+var arr = ["a","b","c"];
+arr.forEach(function(value){
+	console.log(value);   // a, b, c
+});
+
+// ES6
+var arr = ["a","b","c"];
+arr.forEach(value => console.log(value));   // a, b, c
+```
