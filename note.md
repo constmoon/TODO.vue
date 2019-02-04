@@ -278,3 +278,45 @@ getters: {
 <p>{{ this.$store.getters.getNumber }} (10)</p>
 <p>{{ this.$store.getters.doubleNumber }} (20)</p>
 ```
+
+
+#### mutations
+- state의 값을 변경할 수 있는 유일한 방법이자 메서드
+- mutation은 ```commit()```으로 동작시킨다.
+```
+// store.js
+state: {
+	num: 10
+},
+mutations: {
+	printNumbers(state){
+		return state.num
+	},
+	sumNumbers(state, anotherNum){
+		return state.num + anotherNum;
+	}
+}
+
+// App.vue
+this.$store.commit('printNumbers');
+this.$store.commit('sumNumbers',20);
+```
+
+- state를 변경하기 위해 mutations를 동작시킬 때 인자를 전달할 수 있음
+- 파라미터 이름은 편의상 payload라고 많이들 쓴다...
+- 여러가지 값을 보내고 싶을 땐 객체화시켜서 key: value로 넘길 수 있음
+```
+// store.js
+state: { storeNum : 10 },
+mutations:{
+	modifyState(state, payload){
+		console.log(payload.str);
+		return state.storeNum += payload.num;
+	}
+}
+// App.vue
+this.$store.commit('modifyState', {
+	str: 'passed from payload',
+	num: 20
+})
+```

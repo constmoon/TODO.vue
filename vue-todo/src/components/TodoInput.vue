@@ -1,6 +1,5 @@
 <template>
   <div class="inputBox shadow">
-    <!-- v-model="특정 데이터 속성": input에 입력된 텍스트값을 동적으로 vue instance에 맵핑 -->
     <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo" placeholder="할 일을 입력하세요">
     <span class="addContainer" v-on:click="addTodo">
       <i class="fas fa-plus addBtn"></i>
@@ -28,10 +27,9 @@ export default {
   },
   methods: {
     addTodo() {
-      // input값이 있어야 실행
       if (this.newTodoItem !== "") {
-        // input: 이벤트 발생
-        this.$emit("addTodoItem", this.newTodoItem);
+        const text = this.newTodoItem.trim();
+        this.$store.commit('addOneItem', text);
         this.clearInput();
       }
       else{

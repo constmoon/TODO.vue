@@ -1,7 +1,6 @@
 <template>
   <div>
     <transition-group name="list" tag="ul">
-      <!-- v-bind:key => todoItem의 텍스트가 key가 되어 중복 X, v-for의 성능 가속화 -->
       <li v-for="(todoItem,index) in this.$store.state.todoItems" v-bind:key="todoItem.item" class="shadow">
         <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed}" 
         v-on:click="toggleCompltete(todoItem, index)"></i>
@@ -16,15 +15,13 @@
 
 <script>
 export default {
-  props: ['propsdata'],
   methods: {
     removeTodo(todoItem, index) {
-      // 2개의 파라미터를 App.vue의 removeItem으로 보냄
-      // $emit(eventName)을 사용하여 이벤트를 발생 
-      this.$emit('removeItem', todoItem, index);
+      // object 형태로 payload을 넘겨줌
+      this.$store.commit('removeOneItem', {todoItem, index});
     },
     toggleCompltete(todoItem, index){
-      this.$emit('toggleItem', todoItem, index);
+      this.$store.commit('toggleOneItem', {todoItem, index});
     }
   },
 };
