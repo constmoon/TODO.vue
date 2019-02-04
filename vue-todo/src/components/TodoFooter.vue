@@ -26,5 +26,6 @@ export default {
 .clearAllBtn{
     color: #e20303;
     display: block;
+    cursor: pointer;
 }
 </style>

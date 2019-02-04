@@ -2,7 +2,7 @@
   <div>
     <transition-group name="list" tag="ul">
       <!-- v-bind:key => todoItem의 텍스트가 key가 되어 중복 X, v-for의 성능 가속화 -->
-      <li v-for="(todoItem,index) in propsdata" v-bind:key="todoItem.item" class="shadow">
+      <li v-for="(todoItem,index) in this.$store.state.todoItems" v-bind:key="todoItem.item" class="shadow">
         <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed}" 
         v-on:click="toggleCompltete(todoItem, index)"></i>
         <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>

@@ -222,13 +222,59 @@ var dictionary = {
 
 ## Vuex
 복잡한 어플리케이션의 컴포넌트들을 효율적으로 관리해주는 라이브러리
-* Vuex 라이브러리의 주요 속성ㅞ
-	1. state: 데이터(property)
-	2. getters: computed
-	3. mutations: 메서드
-	4. actions: 비동기 메서드
+* Vuex 라이브러리의 주요 속성
+	1. state: 여러 컴포넌트에 공유되는 ```data```(property)
+	2. getters: 연산된 state값을 접근하는 속성 ```computed```
+	3. mutations: state값을 변경하는 이벤트 로직, 메서드 ```methods```
+	4. actions: 비동기 처리 로직을 선언하는 메서드 ```aysnc methods```
 
 * Vuex로 해결할 수 있는 문제
 	- MVC 패턴에서 발생하는 구조적 오류(양방향 데이터 전송을 단방향으로 변경)
 	- 컴포넌트 간 데이터 전달 명시
 	- 여러 개의 컴포넌트에서 같은 데이터를 업데이트 할 때 동기화 문제
+
+
+#### State
+- 여러 컴포넌트 간에 공유할 데이터, 상태
+```
+// Vue
+data: {
+	message: 'Hello Vue.js!'
+}
+
+// Vuex
+state: {
+	message: 'Hello Vue.js!
+
+}
+```
+```
+<!-- Vue -->
+<p>{{ message }}</p>
+
+<!-- Vuex -->
+<!-- Vue.use(Vuex) 처럼 global functionality로 접근했기 때문에 이런 식으로 사용 -->
+<p>{{ this.$store.state.message }}</p>
+```
+
+
+#### getters
+- state 값을 접근하는 속성이자 ```computed()```처럼 미리 연산된 값을 접근하는 속성
+```
+// store.js
+state: {
+	num: 10
+},
+getters: {
+	getNumber(state){
+		return state.num;
+	},
+	doubleNumber(state){
+		return state.num * 2;
+	}
+}
+```
+```
+<p>{{ this.$store.getters.getNumber }} (10)</p>
+<p>{{ this.$store.getters.doubleNumber }} (20)</p>
+```
